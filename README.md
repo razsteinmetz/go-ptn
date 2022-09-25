@@ -1,18 +1,15 @@
 # parse-torrent-name
 
-
-
 > Extract media information from torrent-like filename
 
-A Go port of [Jānis](https://github.com/jzjzjzj)' awesome
-[library](https://github.com/jzjzjzj/parse-torrent-name) written in 
-javascript.
+A port of  `middelink/go-parse-torrent-name`  awesome
+[library](https://github.com/middelink/go-parse-torrent-name).
 
-Extract all possible media information present in filenames. Multiple regex 
+Extract all possible media information present in filenames. Multiple regex
 rules are applied on filename string each of which extracts corresponding
 information from the filename. If a regex rule matches, the corresponding part
 is removed from the filename. In the end, the remaining part is taken as the
-title of the content.  
+title of the content.
 
 ## Why?
 
@@ -25,110 +22,72 @@ these APIs, only the title of the content should be provided as the search
 query where this library comes into play. The accuracy of the results can be
 improved by passing in the year which can also be extracted using this library.
 
+This port assumes the files folllow the current (2022) formats, and puts less focus on older naming styles.
+This port fixed some bugs with file extentions (containter) and various title issues.
+It includes a test file which can easily be updated as a json file.
+
+## Information extracted
+
+below is the resulting struct that the function returns.
+
+```
+Title      string `json:"title,omitempty"`
+Season     int    `json:"season,omitempty"`
+Episode    int    `json:"episode,omitempty"`
+Year       int    `json:"year,omitempty"`
+Resolution string `json:"resolution,omitempty"` //1080p etc
+Quality    string `json:"quality,omitempty"`
+Codec      string `json:"codec,omitempty"`
+Audio      string `json:"audio,omitempty"`
+Service    string `json:"service,omitempty"` // NF etc
+Group      string `json:"group,omitempty"`
+Region     string `json:"region,omitempty"`
+Extended   bool   `json:"extended,omitempty"`
+Hardcoded  bool   `json:"hardcoded,omitempty"`
+Proper     bool   `json:"proper,omitempty"`
+Repack     bool   `json:"repack,omitempty"`
+Container  string `json:"container,omitempty"`
+Widescreen bool   `json:"widescreen,omitempty"`
+Website    string `json:"website,omitempty"`
+Language   string `json:"language,omitempty"`
+Sbs        string `json:"sbs,omitempty"`
+Unrated    bool   `json:"unrated,omitempty"`
+Size       string `json:"size,omitempty"`
+Threed     bool   `json:"3d,omitempty"`
+IsMovie    bool   `json:"ismovie"` // true if this is a movie, false if tv show
+```
+
 ## Usage
 
 ```go
-import PTN
+package main
 
-info = PTN.parse('A freakishly cool movie or TV episode')
+import (
+	"fmt"
+	"github.com/razsteinmetz/go-ptn"
+)
 
-print info # All details that were parsed
+func main() {
+	filename := "series.title.s01e03.720p.hdtv-GROUP.avi"
+	info,_ := ptn.Parse(filename)
+	fmt.Println(info)
+}
+
+// info has all the data you need
 ```
 
 PTN works well for both movies and TV episodes. All meaningful information is
-extracted and returned together in a dictionary. The text which could not be
-parsed is returned in the `excess` field.
+extracted and returned together in a dictionary. 
 
-### Movies
-
-```py
-PTN.parse('San Andreas 2015 720p WEB-DL x264 AAC-JYK')
-# {
-#     'group': 'JYK',
-#     'title': 'San Andreas',
-#     'resolution': '720p',
-#     'codec': 'x264',
-#     'year':  '2015',
-#     'audio': 'AAC',
-#     'quality': 'WEB-DL'
-# }
-
-PTN.parse('The Martian 2015 540p HDRip KORSUB x264 AAC2 0-FGT')
-# {
-#     'group': '0-FGT',
-#     'title': 'The Martian',
-#     'resolution': '540p',
-#     'excess': ['KORSUB', '2'],
-#     'codec': 'x264',
-#     'year': 2015,
-#     'audio': 'AAC',
-#     'quality': 'HDRip'
-# }
-```
-
-### TV episodes 
-
-```py
-PTN.parse('Mr Robot S01E05 HDTV x264-KILLERS[ettv]')
-# {
-#     'episode': 5,
-#     'season': 1,
-#     'title': 'Mr Robot',
-#     'codec': 'x264',
-#     'group':  'KILLERS[ettv]'
-#     'quality': 'HDTV'
-# }
-
-PTN.parse('friends.s02e01.720p.bluray-sujaidr')
-# {
-#     'episode': 1,
-#     'season': 2,
-#     'title': 'friends',
-#     'resolution': '720p',
-#     'group': 'sujaidr',
-#     'quality': 'bluray'    
-# }
-```
-
-### Note
-
-PTN does not garantee the fields `group`, `excess` and `episodeName` as these 
-fields might be interchanged with each other. This shoudn't affect most 
-applications since episode name can be fetched from an online database 
-after getting the season and episode number correctly.
-
-### Parts extracted
-
-* audio
-* codec
-* container
-* episode
-* episodeName
-* excess
-* extended
-* garbage
-* group
-* hardcoded
-* language
-* proper
-* quality
-* region
-* repack
-* resolution
-* season
-* title
-* website
-* widescreen
-* year
 
 ## Install
 
 ### Automatic
 
-PTN can be installed using `go get`.
+go-ptn can be installed using `go get`.
 
 ```sh
-$ go get github.com/middelink/go-parse-torrent-name
+$ go get github.com/razsteinmetz/go-ptn
 ```
 
 ### Manual
@@ -136,7 +95,7 @@ $ go get github.com/middelink/go-parse-torrent-name
 First clone the repository.
 
 ```sh
-$ git clone https://github.com/middelink/go-parse-torrent-name PTN && cd PTN
+$ git clone https://github.com/razsteinmetz/go-ptn go-ptn && cd go-ptn
 ```
 
 And run the command for installing the package.
@@ -145,12 +104,4 @@ And run the command for installing the package.
 $ go install .
 ```
 
-## Contributing
 
-Take a look at the open
-[issues](https://github.com/jzjzjzj/parse-torrent-name/issues) on the original
-project and submit a PR!
-
-## License
-
-MIT © [Pauline Middelink](http://www.polyware.nl/~middelink)
