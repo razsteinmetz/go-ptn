@@ -1,6 +1,10 @@
-# parse-torrent-name
-![Go](https://github.com/razsteinmetz/go-ptn/workflows/Go/badge.svg)
-> Extract media information from torrent-like filename
+# go-ptn - Parse Torrent File Name
+
+[![GoDoc](https://godoc.org/github.com/razsteinmetz/go-ptn?status.svg)](https://godoc.org/github.com/razsteinmetz/go-ptn)
+[![License](https://img.shields.io/github/license/razsteinmetz/go-ptn.svg)](https://github.com/razsteinmetz/go-ptn/blob/master/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/razsteinmetz/go-ptn)](https://goreportcard.com/report/github.com/razsteinmetz/go-ptn)
+
+> Extract media information from movie and tv series filename
 
 A port of  `middelink/go-parse-torrent-name`  awesome
 [library](https://github.com/middelink/go-parse-torrent-name).
