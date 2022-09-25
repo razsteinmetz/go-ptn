@@ -1,10 +1,6 @@
 # parse-torrent-name
 
-[![GoDoc](https://godoc.org/github.com/middelink/go-parse-torrent-name?status.svg)](https://godoc.org/github.com/middelink/go-parse-torrent-name)
-[![License](https://img.shields.io/github/license/middelink/go-parse-torrent-name.svg)](https://github.com/middelink/go-parse-torrent-name/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/middelink/go-parse-torrent-name.svg?branch=master)](https://travis-ci.org/middelink/go-parse-torrent-name)
-[![Coverage Status](https://coveralls.io/repos/github/middelink/go-parse-torrent-name/badge.svg?branch=master)](https://coveralls.io/github/middelink/go-parse-torrent-name?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/middelink/go-parse-torrent-name)](https://goreportcard.com/report/github.com/middelink/go-parse-torrent-name)
+
 
 > Extract media information from torrent-like filename
 
@@ -13,10 +9,10 @@ A Go port of [Jānis](https://github.com/jzjzjzj)' awesome
 javascript.
 
 Extract all possible media information present in filenames. Multiple regex 
-rules are applied on filename string each of which extracts correponding
+rules are applied on filename string each of which extracts corresponding
 information from the filename. If a regex rule matches, the corresponding part
 is removed from the filename. In the end, the remaining part is taken as the
-title of the content.
+title of the content.  
 
 ## Why?
 
