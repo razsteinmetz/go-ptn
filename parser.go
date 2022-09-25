@@ -34,6 +34,7 @@ type TorrentInfo struct {
 	Unrated    bool   `json:"unrated,omitempty"`
 	Size       string `json:"size,omitempty"`
 	Threed     bool   `json:"3d,omitempty"`
+	Country    string `json:"country,omitempty"`
 	IsMovie    bool   `json:"ismovie"` // true if this is a movie, false if tv show
 }
 
@@ -122,6 +123,10 @@ func Parse(filename string) (*TorrentInfo, error) {
 	//}
 	//cleanName = strings.Replace(cleanName, "_", " ", -1)
 	//cleanName = re.sub('([\[\(_]|- )$', '', cleanName).strip()
+	if matches := countryre.FindAllStringSubmatch(cleanName, -1); len(matches) != 0 {
+		tor.Country = matches[0][1]
+		cleanName = cleanName[0 : len(cleanName)-3] // remove the coutnry from th name
+	}
 	setField(tor, "title", raw, cleanName)
 	tor.IsMovie = tor.Episode == 0 && tor.Season == 0
 	return tor, nil

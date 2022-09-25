@@ -11,6 +11,7 @@ import (
 // are not containers
 var container = regexp.MustCompile(`(?i)\.(MKV|AVI|MP4|MOV|MPG|MPEG|FLV|F4V|SWF|WMV|MP2|MPE|MPV|OGG|M4V|M4P|AVCHD)$`)
 var otherExtensions = regexp.MustCompile(`(?i)\.(SRT|SUB|IDX)$`) // not containers but reasonable to expect
+var countryre = regexp.MustCompile(`\b(US|UK)$`)                 // country name in upper case at the end of the title
 
 var patterns = []struct {
 	name string

@@ -54,6 +54,7 @@ Sbs        string `json:"sbs,omitempty"`
 Unrated    bool   `json:"unrated,omitempty"`
 Size       string `json:"size,omitempty"`
 Threed     bool   `json:"3d,omitempty"`
+Country    string `json:"country,omitempty"`   // two letters uppercase at the end of the title US or UK only for now
 IsMovie    bool   `json:"ismovie"` // true if this is a movie, false if tv show
 ```
 
