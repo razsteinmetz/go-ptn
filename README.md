@@ -1,5 +1,5 @@
 # parse-torrent-name
-
+![Go](https://github.com/razsteinmetz/go-ptn/workflows/Go/badge.svg)
 > Extract media information from torrent-like filename
 
 A port of  `middelink/go-parse-torrent-name`  awesome
