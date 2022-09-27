@@ -1,6 +1,7 @@
 package ptn
 
 import (
+	"encoding/json"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"reflect"
@@ -36,6 +37,14 @@ type TorrentInfo struct {
 	Threed     bool   `json:"3d,omitempty"`
 	Country    string `json:"country,omitempty"`
 	IsMovie    bool   `json:"ismovie"` // true if this is a movie, false if tv show
+}
+
+func (t *TorrentInfo) ToJson() (string, error) {
+	s, e := json.Marshal(t)
+	if e != nil {
+		return "", e
+	}
+	return string(s), nil
 }
 
 func setField(tor *TorrentInfo, field, raw, val string) {
