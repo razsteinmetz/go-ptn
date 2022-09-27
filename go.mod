@@ -1,4 +1,4 @@
-module ptn
+module github.com/razsteinmetz/go-ptn
 
 go 1.19
 
