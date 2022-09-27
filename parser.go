@@ -25,8 +25,9 @@ type TorrentInfo struct {
 	Region     string `json:"region,omitempty"`
 	Extended   bool   `json:"extended,omitempty"`
 	Hardcoded  bool   `json:"hardcoded,omitempty"`
+	Limited    bool   `json:"limited,omitempty"`
 	Proper     bool   `json:"proper,omitempty"`
-	Repack     bool   `json:"repack,omitempty"`
+	Repack     bool   `json:"repack,omitempty"` // also rerip
 	Container  string `json:"container,omitempty"`
 	Widescreen bool   `json:"widescreen,omitempty"`
 	Website    string `json:"website,omitempty"`
@@ -40,14 +41,6 @@ type TorrentInfo struct {
 }
 
 func (t TorrentInfo) Tojson() (string, error) {
-	s, e := json.Marshal(t)
-	if e != nil {
-		return "", e
-	}
-	return string(s), nil
-}
-
-func Efunc(t *TorrentInfo) (string, error) {
 	s, e := json.Marshal(t)
 	if e != nil {
 		return "", e
