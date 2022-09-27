@@ -1,4 +1,4 @@
-module go-ptn
+module ptn
 
 go 1.19
 
