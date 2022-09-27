@@ -47,7 +47,7 @@ func (t TorrentInfo) Tojson() (string, error) {
 	return string(s), nil
 }
 
-func XXX(t *TorrentInfo) (string, error) {
+func Efunc(t *TorrentInfo) (string, error) {
 	s, e := json.Marshal(t)
 	if e != nil {
 		return "", e
