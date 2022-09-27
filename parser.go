@@ -39,7 +39,7 @@ type TorrentInfo struct {
 	IsMovie    bool   `json:"ismovie"` // true if this is a movie, false if tv show
 }
 
-func (t *TorrentInfo) ToJson() (string, error) {
+func (t *TorrentInfo) Tojson() (string, error) {
 	s, e := json.Marshal(t)
 	if e != nil {
 		return "", e
