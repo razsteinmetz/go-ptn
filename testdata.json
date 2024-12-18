@@ -1031,5 +1031,20 @@
       "group": "DIMENSION",
       "ismovie": false
     }
+  },
+  {
+    "fname": "[04x01] The Noose",
+    "wanted": {
+      "title": "The Noose",
+      "season": 4,
+      "episode": 1,
+      "country": "",
+      "resolution": "",
+      "quality": "",
+      "codec": "",
+      "group": "",
+      "website": "",
+      "ismovie": false
+    }
   }
 ]
