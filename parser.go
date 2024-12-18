@@ -2,11 +2,12 @@ package ptn
 
 import (
 	"encoding/json"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // TorrentInfo is the resulting structure returned by Parse
@@ -107,6 +108,10 @@ func Parse(filename string) (*TorrentInfo, error) {
 		} else if index < endIndex {
 			endIndex = index
 			//fmt.Printf("    endIndex moved to %d [%q]\n", endIndex, filename[startIndex:endIndex])
+		}
+		if startIndex > endIndex {
+			endIndex = len(filename)
+			continue
 		}
 		setField(tor, pattern.name, matches[matchIdx][1], matches[matchIdx][2])
 	}
